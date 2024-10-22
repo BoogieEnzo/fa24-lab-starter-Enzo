@@ -1,4 +1,4 @@
-#ifndef CS61C_VECTOR_H_
+#ifndef CS61C_VECTOR_H_ //if not defined
 #define CS61C_VECTOR_H_
 /* vector.h originally written by Jeremy Huddleston <jeremyhu@eecs.berkeley.edu> Sp2004
  *

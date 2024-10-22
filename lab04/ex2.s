@@ -1,16 +1,16 @@
 .data
 n: .word 2
-exp: .word 10
+exp: .word 11
 
 .text
 main:
     # load the value of n into a0
     la a0 n
-    lw a0 0(a0)
+    lw a0 0(a0) # a0 = n
 
     # load the value of exp into a1
     la a1 exp
-    lw a1 0(a1)
+    lw a1 0(a1) # a1 = exp
 
     # call ex2
     jal ra ex2
@@ -32,7 +32,10 @@ main:
 #     where ^ is the exponent operator, not XOR
 ex2:
     # Note: Add code BELOW without altering existing lines.
+    # 我的修改，需要保存ra，因为call another func that will modify ra; otherwise it wll raturn to line 49 infinitely
+    addi sp sp -8
     sw s0 0(sp)
+    sw ra 4(sp)
 
     # return 1 if a1 == 0
     beq a1 x0 ex2_zero_case
@@ -53,5 +56,7 @@ ex2_zero_case:
 
 ex2_end:
     lw s0 0(sp)
+    lw ra 4(sp)
+    addi sp sp 8
 
     jr ra
